@@ -1,0 +1,85 @@
+package com.e.speedy
+
+import android.annotation.SuppressLint
+import android.content.res.Resources
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
+import androidx.core.text.HtmlCompat
+import com.e.speedy.database.Run
+import java.text.SimpleDateFormat
+
+/**
+ * These functions create a formatted string that can be set in a TextView.
+ * Returns a string representing the numeric quality rating.
+ */
+
+fun convertNumericQualityToString(quality: Int, resources: Resources): String {
+    var qualityString = resources.getString(R.string.three_satisfied)
+    when (quality) {
+        -1 -> qualityString = "--"
+        1 -> qualityString = resources.getString(R.string.one_very_dissatisfied)
+        2 -> qualityString = resources.getString(R.string.two_dissatisfied)
+        4 -> qualityString = resources.getString(R.string.four_very_satisfied)
+    }
+    return qualityString
+}
+
+
+/**
+ * Take the Long milliseconds returned by the system and stored in Room,
+ * and convert it to a nicely formatted string for display.
+ *
+ * EEEE - Display the long letter version of the weekday
+ * MMM - Display the letter abbreviation of the month
+ * dd-yyyy - day in month and full year numerically
+ * h:mm a - Hours and minutes in 12hr format
+ */
+@SuppressLint("SimpleDateFormat")
+fun convertLongToDateString(systemTime: Long): String {
+    return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'h:mm a")
+        .format(systemTime).toString()
+}
+
+/**
+ * Takes a list of Runs and converts and formats it into one string for display.
+ *
+ * For display in a TextView, we have to supply one string, and styles are per TextView, not
+ * applicable per word. So, we build a formatted string using HTML. This is handy, but we will
+ * learn a better way of displaying this data in a future lesson.
+ *
+ * @param   runs - List of all Runs in the database.
+ * @param   resources - Resources object for all the resources defined for our app.
+ *
+ * @return  Spanned - An interface for text that has formatting attached to it.
+ *           See: https://developer.android.com/reference/android/text/Spanned
+ */
+fun formatRuns(runs: List<Run>, resources: Resources): Spanned {
+    val sb = StringBuilder()
+    sb.apply {
+        append(resources.getString(R.string.title))
+        runs.forEach {
+            append("<br>")
+            append(resources.getString(R.string.start_time))
+            append("\t${convertLongToDateString(it.startTimeMillis)}<br>")
+            if (it.endTimeMillis != it.startTimeMillis) {
+                append(resources.getString(R.string.end_time))
+                append("\t${convertLongToDateString(it.endTimeMillis)}<br>")
+                append(resources.getString(R.string.quality))
+                append("\t${convertNumericQualityToString(it.runQuality, resources)}<br>")
+                append(resources.getString(R.string.run_time))
+                // Hours
+                append("\t ${it.endTimeMillis.minus(it.startTimeMillis) / 1000 / 60 / 60}:")
+                // Minutes
+                append("${it.endTimeMillis.minus(it.startTimeMillis) / 1000 / 60}:")
+                // Seconds
+                append("${it.endTimeMillis.minus(it.startTimeMillis) / 1000}<br><br>")
+            }
+        }
+    }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        return Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_LEGACY)
+    } else {
+        return HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
+    }
+}

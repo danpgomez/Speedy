@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/runTrackerFragment">
+
+    <fragment
+        android:id="@+id/runTrackerFragment"
+        android:name="com.e.speedy.runTracker.RunTrackerFragment"
+        android:label="fragment_run_tracker"
+        tools:layout="@layout/fragment_run_tracker" >
+        <action
+            android:id="@+id/action_runTrackerFragment_to_runQualityFragment"
+            app:destination="@id/runQualityFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/runQualityFragment"
+        android:name="com.e.speedy.runQuality.RunQualityFragment"
+        android:label="fragment_run_quality"
+        tools:layout="@layout/fragment_run_quality" >
+        <action
+            android:id="@+id/action_runQualityFragment_to_runTrackerFragment"
+            app:destination="@id/runTrackerFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
+        <argument
+            android:name="runKey"
+            app:argType="long" />
+    </fragment>
+</navigation>

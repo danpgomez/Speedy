@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- App title and fragment titles -->
+    <string name="app_name">Speedy</string>
+    <string name="run_tracker_fragment">RunTrackerFragment</string>
+    <string name="run_quality_fragment">RunQualityFragment</string>
+
+    <!-- Button labels -->
+    <string name="start">START</string>
+    <string name="stop">STOP</string>
+    <string name="clear">CLEAR</string>
+
+    <string name="how_was_run">How was your run?</string>
+    <string name="run_log">Running Log:</string>
+
+    <!-- contentDescription strings for quality icons -->
+    <string name="very_dissatisfied">Very Dissatisfied</string>
+    <string name="dissatisfied">Dissatisfied</string>
+    <string name="satisfied">Satisfied</string>
+    <string name="very_satisfied">Very Satisfied</string>
+
+    <!-- Output to TextView styled with a little HTML -->
+    <string name="title"><![CDATA[<h3>Running Log:</h3>]]></string>
+    <string name="start_time"><![CDATA[<b>Start:</b>]]></string>
+    <string name="end_time"><![CDATA[<b>End:</b>]]></string>
+    <string name="quality"><![CDATA[<b>Quality:</b>]]></string>
+    <string name="run_time"><![CDATA[<b>Total Time:</b>]]></string>
+
+    <!-- Run quality strings -->
+    <string name="how_was_hour_run">How was your run?</string>
+    <string name="one_very_dissatisfied">Very Dissatisfied</string>
+    <string name="two_dissatisfied">Dissatisfied</string>
+    <string name="three_satisfied">Satisfied</string>
+    <string name="four_very_satisfied">Very Satisfied</string>
+
+    <!-- Toast to play after Clear button has been pressed -->
+    <string name="cleared_message">All your run data is gone forever.</string>
+</resources>
