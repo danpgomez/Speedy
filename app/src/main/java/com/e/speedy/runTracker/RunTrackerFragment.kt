@@ -39,6 +39,14 @@ class RunTrackerFragment : Fragment() {
 
         binding.runTrackerViewModel = runTrackerViewModel
         binding.lifecycleOwner = this
+        val adapter = RunAdapter()
+        binding.runList.adapter = adapter
+
+        runTrackerViewModel.allRuns.observe(viewLifecycleOwner, Observer { runs ->
+            runs?.let {
+                adapter.submitList(runs)
+            }
+        })
 
         runTrackerViewModel.navigateToRunQuality.observe(viewLifecycleOwner, Observer { run ->
             run?.let {

@@ -24,7 +24,7 @@ class RunTrackerViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var currentRun = MutableLiveData<Run?>()
-    private var allRuns = databaseDAO.getAllRuns()
+    var allRuns = databaseDAO.getAllRuns()
     val allRunsString = Transformations.map(allRuns) { runList ->
         formatRuns(runList, application.resources)
     }
