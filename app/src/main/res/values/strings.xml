@@ -10,15 +10,6 @@
     <string name="stop">STOP</string>
     <string name="clear">CLEAR</string>
 
-    <string name="how_was_run">How was your run?</string>
-    <string name="run_log">Running Log:</string>
-
-    <!-- contentDescription strings for quality icons -->
-    <string name="very_dissatisfied">Very Dissatisfied</string>
-    <string name="dissatisfied">Dissatisfied</string>
-    <string name="satisfied">Satisfied</string>
-    <string name="very_satisfied">Very Satisfied</string>
-
     <!-- Output to TextView styled with a little HTML -->
     <string name="title"><![CDATA[<h3>Running Log:</h3>]]></string>
     <string name="start_time"><![CDATA[<b>Start:</b>]]></string>
@@ -27,16 +18,17 @@
     <string name="run_time"><![CDATA[<b>Total Time:</b>]]></string>
 
     <!-- Run quality strings -->
-    <string name="how_was_hour_run">How was your run?</string>
-    <string name="one_very_dissatisfied">Very Dissatisfied</string>
-    <string name="two_dissatisfied">Dissatisfied</string>
-    <string name="three_satisfied">Satisfied</string>
-    <string name="four_very_satisfied">Very Satisfied</string>
+    <string name="run_log">Running Log:</string>
+    <string name="how_was_run">How was your run?</string>
+    <string name="not_great">Not great</string>
+    <string name="ok">Ok</string>
+    <string name="great">Great</string>
+    <string name="fantastic">Fantastic!</string>
 
     <!-- Toast to play after Clear button has been pressed -->
     <string name="cleared_message">All your run data is gone forever.</string>
     <string name="run_quality">Run quality</string>
-    <string name="minutes_length">%d minutes on %s</string>
-    <string name="hours_length">%d hours on %s</string>
-    <string name="seconds_length">%d seconds on %s</string>
+    <string name="minutes_length">%d min on %s</string>
+    <string name="hours_length">%d hr on %s</string>
+    <string name="seconds_length">%d sec on %s</string>
 </resources>

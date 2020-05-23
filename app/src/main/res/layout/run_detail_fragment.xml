@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".runDetail.RunDetailFragment">
+
+    <ImageView
+        android:id="@+id/qualityImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/run_quality"
+        app:srcCompat="@drawable/very_satisfied"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/qualityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/qualityImage"
+        app:layout_constraintStart_toStartOf="@+id/qualityImage"
+        app:layout_constraintTop_toBottomOf="@+id/qualityImage"
+        tools:text="@string/fantastic" />
+
+    <TextView
+        android:id="@+id/durationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/qualityText"
+        app:layout_constraintStart_toStartOf="@+id/qualityText"
+        app:layout_constraintTop_toBottomOf="@+id/qualityText"
+        tools:text="40 minutes on Saturday" />
+</androidx.constraintlayout.widget.ConstraintLayout>

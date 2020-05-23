@@ -5,17 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.e.speedy.R
-import com.e.speedy.convertDurationToFormatted
-import com.e.speedy.convertNumericQualityToString
 import com.e.speedy.database.Run
 import com.e.speedy.databinding.ListItemRunBinding
 
-class RunAdapter: ListAdapter<Run, RunAdapter.ViewHolder>(RunDiffUtilCallback()) {
+class RunAdapter(val runListener: RunListener): ListAdapter<Run, RunAdapter.ViewHolder>(RunDiffUtilCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        holder.bind(getItem(position)!!, runListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,9 +20,11 @@ class RunAdapter: ListAdapter<Run, RunAdapter.ViewHolder>(RunDiffUtilCallback())
 
     class ViewHolder private constructor(val binding: ListItemRunBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            item: Run
+            item: Run,
+            runListener: RunListener
         ) {
             binding.run = item
+            binding.clickListener = runListener
             binding.executePendingBindings()
         }
         companion object {
@@ -47,5 +45,8 @@ class RunDiffUtilCallback: DiffUtil.ItemCallback<Run>() {
     override fun areContentsTheSame(oldItem: Run, newItem: Run): Boolean {
         return oldItem == newItem
     }
+}
 
+class RunListener(val clickListener: (runId: Long) -> Unit) {
+    fun onClick(run: Run) = clickListener(run.runId)
 }

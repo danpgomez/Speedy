@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.e.speedy.R
 import com.e.speedy.database.RunDatabase
 import com.e.speedy.databinding.FragmentRunTrackerBinding
@@ -39,8 +41,13 @@ class RunTrackerFragment : Fragment() {
 
         binding.runTrackerViewModel = runTrackerViewModel
         binding.lifecycleOwner = this
-        val adapter = RunAdapter()
+        val adapter = RunAdapter(RunListener {
+            runId ->  runTrackerViewModel.onRunClicked(runId)
+        })
         binding.runList.adapter = adapter
+
+        val gridLayoutManager = GridLayoutManager(activity, 3)
+        binding.runList.layoutManager = gridLayoutManager
 
         runTrackerViewModel.allRuns.observe(viewLifecycleOwner, Observer { runs ->
             runs?.let {
@@ -54,6 +61,13 @@ class RunTrackerFragment : Fragment() {
                     RunTrackerFragmentDirections.actionRunTrackerFragmentToRunQualityFragment(run.runId)
                 )
                 runTrackerViewModel.doneNavigating()
+            }
+        })
+
+        runTrackerViewModel.navigateToRunDetail.observe(viewLifecycleOwner, Observer { run ->
+            run?.let {
+                this.findNavController().navigate(RunTrackerFragmentDirections.actionRunTrackerFragmentToRunDetailFragment())
+                runTrackerViewModel.onRunDetailNavigated()
             }
         })
 

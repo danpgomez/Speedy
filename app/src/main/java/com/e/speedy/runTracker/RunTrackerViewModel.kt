@@ -37,6 +37,18 @@ class RunTrackerViewModel(
         _navigateToRunQuality.value = null
     }
 
+    private val _navigateToRunDetail = MutableLiveData<Long>()
+    val navigateToRunDetail: LiveData<Long>
+        get() = _navigateToRunDetail
+
+    fun onRunClicked(id: Long) {
+        _navigateToRunDetail.value = id
+    }
+
+    fun onRunDetailNavigated() {
+        _navigateToRunDetail.value = null
+    }
+
     init {
         initializeCurrentRun()
     }

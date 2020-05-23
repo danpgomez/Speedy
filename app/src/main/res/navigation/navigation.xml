@@ -15,6 +15,11 @@
             app:destination="@id/runQualityFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_runTrackerFragment_to_runDetailFragment"
+            app:destination="@id/runDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/runQualityFragment"
@@ -30,4 +35,9 @@
             android:name="runKey"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/runDetailFragment"
+        android:name="com.e.speedy.runDetail.RunDetailFragment"
+        android:label="run_detail_fragment"
+        tools:layout="@layout/run_detail_fragment" />
 </navigation>

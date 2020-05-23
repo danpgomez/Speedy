@@ -7,51 +7,55 @@
         <variable
             name="run"
             type="com.e.speedy.database.Run" />
+        <variable
+            name="clickListener"
+            type="com.e.speedy.runTracker.RunListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:padding="4dp"
+        android:onClick="@{() -> clickListener.onClick(run)}">
 
         <ImageView
             android:id="@+id/quality_imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:contentDescription="@string/run_quality"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/run_length"
+            app:layout_constraintStart_toStartOf="@+id/run_length"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:srcCompat="@drawable/very_satisfied"
-            app:runQualityImage="@{run}"/>
-
-        <TextView
-            android:id="@+id/quality_string"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@id/run_length"
-            app:layout_constraintStart_toStartOf="@id/run_length"
-            app:layout_constraintTop_toBottomOf="@id/run_length"
-            tools:text="@string/very_satisfied"
-            app:runQualityString="@{run}"/>
+            app:runQualityImage="@{run}"
+            tools:srcCompat="@drawable/very_satisfied" />
 
         <TextView
             android:id="@+id/run_length"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:textSize="14sp"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/quality_imageView"
-            app:layout_constraintTop_toTopOf="@+id/quality_imageView"
-            tools:text="@tools:sample/date/day_of_week"
-            app:runDurationFormatted="@{run}"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quality_imageView"
+            app:runDurationFormatted="@{run}"
+            tools:text="40 minutes on Sunday" />
+
+        <TextView
+            android:id="@+id/quality_string"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/run_length"
+            app:layout_constraintStart_toStartOf="@+id/run_length"
+            app:layout_constraintTop_toBottomOf="@+id/run_length"
+            app:runQualityString="@{run}"
+            tools:text="@string/fantastic" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

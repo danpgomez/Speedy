@@ -57,12 +57,12 @@ fun convertDurationToFormatted(startTimeMilli: Long, endTimeMilli: Long, res: Re
  */
 
 fun convertNumericQualityToString(quality: Int, resources: Resources): String {
-    var qualityString = resources.getString(R.string.three_satisfied)
+    var qualityString = resources.getString(R.string.great)
     when (quality) {
         -1 -> qualityString = "--"
-        1 -> qualityString = resources.getString(R.string.one_very_dissatisfied)
-        2 -> qualityString = resources.getString(R.string.two_dissatisfied)
-        4 -> qualityString = resources.getString(R.string.four_very_satisfied)
+        1 -> qualityString = resources.getString(R.string.not_great)
+        2 -> qualityString = resources.getString(R.string.ok)
+        4 -> qualityString = resources.getString(R.string.fantastic)
     }
     return qualityString
 }
