@@ -25,4 +25,7 @@ interface RunDAO {
 
     @Query("SELECT * FROM daily_run_quality_table ORDER BY runId DESC LIMIT 1")
     fun getCurrentRun(): Run?
+
+    @Query("SELECT * from daily_run_quality_table WHERE runId = :id")
+    fun getRunWithId(id: Long): LiveData<Run>
 }

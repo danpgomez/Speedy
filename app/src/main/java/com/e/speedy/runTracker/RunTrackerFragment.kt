@@ -47,11 +47,18 @@ class RunTrackerFragment : Fragment() {
         binding.runList.adapter = adapter
 
         val gridLayoutManager = GridLayoutManager(activity, 3)
+        gridLayoutManager.spanSizeLookup = object: GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int) = when (position) {
+                    0 -> 3
+                    else -> 1
+                }
+        }
+
         binding.runList.layoutManager = gridLayoutManager
 
         runTrackerViewModel.allRuns.observe(viewLifecycleOwner, Observer { runs ->
             runs?.let {
-                adapter.submitList(runs)
+                adapter.addHeaderSubmitList(runs)
             }
         })
 
@@ -66,7 +73,7 @@ class RunTrackerFragment : Fragment() {
 
         runTrackerViewModel.navigateToRunDetail.observe(viewLifecycleOwner, Observer { run ->
             run?.let {
-                this.findNavController().navigate(RunTrackerFragmentDirections.actionRunTrackerFragmentToRunDetailFragment())
+                this.findNavController().navigate(RunTrackerFragmentDirections.actionRunTrackerFragmentToRunDetailFragment(run))
                 runTrackerViewModel.onRunDetailNavigated()
             }
         })

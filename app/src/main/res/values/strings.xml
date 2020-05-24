@@ -31,4 +31,5 @@
     <string name="minutes_length">%d min on %s</string>
     <string name="hours_length">%d hr on %s</string>
     <string name="seconds_length">%d sec on %s</string>
+    <string name="close">CLOSE</string>
 </resources>
